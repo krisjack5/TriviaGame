@@ -1,9 +1,10 @@
+
 var quiz = [	
 	
 	{
 		question: "This state was not one of the 13 original colonies",
 		answers: ["New Jesrey", "Delaware", "Georgia", "Maine"],
-		correctAnswer: 3,
+		right: 3,
 		pic:"",
 		
 	},
@@ -11,7 +12,7 @@ var quiz = [
 	{
 		question: "The Whitehouse was burned down during this war",
 		answers: ["Civil War", "War of 1812", "WWII", "Spanish-American War"],
-		correctAnswer: 1, 
+		right: 1, 
 		pic:"",
 		
 	},
@@ -19,7 +20,7 @@ var quiz = [
 	{
 		question: "George Washignton crossed this river on his way to victory at the Battle of Princeton",
 		answers: ["Mississpisi River", "Hudson River", "Delaware River", "Potomac River"],
-		correctAnswer: 2, 
+		right: 2, 
 		pic:"",
 		
 	},
@@ -27,7 +28,7 @@ var quiz = [
 	{
 		question: "Who served as the first ambassador to France?",
 		answers: ["Thomas Jefferson", "Herby Hancock", "Ben Franklin", "Pierre St. Paul"],
-		correctAnswer: 2, 
+		right: 2, 
 		pic:"",
 		
 	},
@@ -41,7 +42,7 @@ var Time =
 	begin: 10,
 	present: 10, 
 	inter: "",
-	on: false,
+	
 
 	
 	Start: function()
@@ -49,7 +50,7 @@ var Time =
 		if (!Time.on) 
 		{
 			Time.inter = setInterval(Time.Count, 1000) 
-			Time.on = true;
+			
 		}
 	},
 
@@ -73,7 +74,7 @@ var Time =
 	Stop: function()
 	{
 		clearInterval(Time.inter);
-		Time.on = false;
+		
 	},
 
 	Reset: function()
@@ -120,7 +121,7 @@ var play = {
 		var box = quiz[play.current];
 
 		
-		if (Time.currentTime < 1) 
+		if (Time.current < 1) 
 		{
 			$("#result").html("Time's Up!");
 			$("#answer").html("The answer was: " + box.answers[box.right]);
@@ -128,7 +129,7 @@ var play = {
 		}
 		else
 		{
-			if (play.answerChosen === box.answers[box.right]) 
+			if (play.picked === box.answers[box.right]) 
 			{
 				$("#result").html("Keep up the good work");
 				$("#answer").html(""); 
@@ -143,7 +144,7 @@ var play = {
 		}
 
 		$("img").attr("src", box.pic);
-		$("img").attr("alt", box.answers[box.right] + " ");
+		
 
 		
 		$("#main").addClass("gone");
@@ -223,6 +224,9 @@ $(document).ready(function()
 		play.ShowAnswer();
 		play.current++;
 		setTimeout(play.nex, 1500);
+		
+
+
 	});
 
 	$("#restart").click(function()

@@ -1,0 +1,29 @@
+body{
+	background-image: url("");
+}
+
+
+
+h1 {
+	font-size: 50px;
+	text-align: center;
+	color: white;
+}
+
+.gone{
+	font-size: 25px;
+	color: white;
+	text-align: center;
+	background-color: red;
+
+}
+
+#start{
+	background-color: green;
+	font-size: 20px;
+}
+
+#restart{
+	background-color: green;
+	font-size: 20px;
+}
