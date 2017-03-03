@@ -1,35 +1,34 @@
-
 var quiz = [	
 	
 	{
 		question: "This state was not one of the 13 original colonies",
 		answers: ["New Jesrey", "Delaware", "Georgia", "Maine"],
-		right: 3,
-		pic:"",
+		correctAnswer: 3,
+		
 		
 	},
 	
 	{
 		question: "The Whitehouse was burned down during this war",
 		answers: ["Civil War", "War of 1812", "WWII", "Spanish-American War"],
-		right: 1, 
-		pic:"",
+		correctAnswer: 1, 
+		
 		
 	},
 	
 	{
 		question: "George Washignton crossed this river on his way to victory at the Battle of Princeton",
 		answers: ["Mississpisi River", "Hudson River", "Delaware River", "Potomac River"],
-		right: 2, 
-		pic:"",
+		correctAnswer: 2, 
+		
 		
 	},
 	
 	{
 		question: "Who served as the first ambassador to France?",
 		answers: ["Thomas Jefferson", "Herby Hancock", "Ben Franklin", "Pierre St. Paul"],
-		right: 2, 
-		pic:"",
+		correctAnswer: 2, 
+		
 		
 	},
 	
@@ -42,7 +41,7 @@ var Time =
 	begin: 10,
 	present: 10, 
 	inter: "",
-	
+	on: false,
 
 	
 	Start: function()
@@ -50,7 +49,7 @@ var Time =
 		if (!Time.on) 
 		{
 			Time.inter = setInterval(Time.Count, 1000) 
-			
+			Time.on = true;
 		}
 	},
 
@@ -58,12 +57,12 @@ var Time =
 	{
 		Time.present--;
 
-		if (Time.present< 1)
+		if (Time.present < 1)
 		{
 			Time.present = 0;
 			Time.Stop();
 		}
-		 
+		
 		if (Time.present === 1)
 			$("#clock").html("Time Left: " + Time.present + " seconds left");
 		else
@@ -74,7 +73,7 @@ var Time =
 	Stop: function()
 	{
 		clearInterval(Time.inter);
-		
+		Time.on = false;
 	},
 
 	Reset: function()
@@ -121,15 +120,15 @@ var play = {
 		var box = quiz[play.current];
 
 		
-		if (Time.current < 1) 
+		if (Time.present < 1) 
 		{
 			$("#result").html("Time's Up!");
-			$("#answer").html("The answer was: " + box.answers[box.right]);
+			$("#answer").html("The answer was: " + box.answers[box.correctAnswer]);
 			play.missed++;
 		}
 		else
 		{
-			if (play.picked === box.answers[box.right]) 
+			if (play.picked === box.answers[box.correctAnswer]) 
 			{
 				$("#result").html("Keep up the good work");
 				$("#answer").html(""); 
@@ -138,15 +137,11 @@ var play = {
 			else 
 			{
 				$("#result").html("Loser");
-				$("#answer").html("The answer was: " + box.answers[box.right]);
+				$("#answer").html("The answer was: " + box.answers[box.correctAnswer]);
 				play.wrong++;
 			}
 		}
 
-		$("img").attr("src", box.pic);
-		
-
-		
 		$("#main").addClass("gone");
 
 		
@@ -173,7 +168,6 @@ var play = {
 		play.picked = "";
 		play.right = 0;
 		play.wrong = 0;
-		play.missed = 0;
 		play.current = 0;
 	},
 
@@ -198,7 +192,7 @@ var play = {
 				play.current++;
 				play.Next();
 			}, 
-			Time.present * 1000 + 3000);
+			Time.present * 3000);
 
 		}
 	}
@@ -223,10 +217,7 @@ $(document).ready(function()
 		play.picked = $(this).html();
 		play.ShowAnswer();
 		play.current++;
-		setTimeout(play.nex, 1500);
-		
-
-
+		setTimeout(play.Next, 2000);
 	});
 
 	$("#restart").click(function()
@@ -237,9 +228,7 @@ $(document).ready(function()
 		$("#clock").removeClass("gone");
 		play.Next();
 	});
-});
-
-
+})
 
 	
 	

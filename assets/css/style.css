@@ -1,29 +1,44 @@
-body{
-	background-image: url("");
-}
-
-
-
-h1 {
-	font-size: 50px;
+h1{
 	text-align: center;
-	color: white;
+	font-size: 40px;
 }
 
-.gone{
-	font-size: 25px;
-	color: white;
-	text-align: center;
-	background-color: red;
 
-}
-
-#start{
+button{
 	background-color: green;
+	font-size: 20px;
+	width: 100px;
+	margin-left: 700px;
+}
+
+#clock{
+	text-align: center;
+
+}
+
+
+#main{
+	text-align: center;
+	font-size: 20px;
+	color: red;
+}
+
+#question{
+	text-align: center;
+	font-size:30px;
+}
+
+#result{
+	text-align: center;
 	font-size: 20px;
 }
 
-#restart{
-	background-color: green;
+#answer{
+	text-align: center;
 	font-size: 20px;
+}
+
+#score{
+	text-align: center;
+	font-size: 30px;
 }
